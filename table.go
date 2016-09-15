@@ -169,9 +169,14 @@ func (t *TableMap) SetVersionCol(field string) *ColumnMap {
 	return c
 }
 
+// SqlForCreate is deprecated. Use SqlForCreateTable
+func (t *TableMap) SqlForCreate(ifNotExists bool) string {
+	return t.SqlForCreateTable(ifNotExists)
+}
+
 // SqlForCreateTable gets a sequence of SQL commands that will create
 // the specified table and any associated schema
-func (t *TableMap) SqlForCreate(ifNotExists bool) string {
+func (t *TableMap) SqlForCreateTable(ifNotExists bool) string {
 	s := bytes.Buffer{}
 	dialect := t.dbmap.Dialect
 
@@ -246,7 +251,7 @@ func (t *TableMap) SqlForCreate(ifNotExists bool) string {
 	return s.String()
 }
 
-func (t *TableMap) SqlForCreateIndexes(index *IndexMap) string {
+func (t *TableMap) sqlForCreateIndex(index *IndexMap) string {
 	s := bytes.Buffer{}
 	dialect := t.dbmap.Dialect
 	dialectType := reflect.TypeOf(dialect)
@@ -274,4 +279,12 @@ func (t *TableMap) SqlForCreateIndexes(index *IndexMap) string {
 	}
 	s.WriteString(";")
 	return s.String()
+}
+
+func (t *TableMap) SqlForCreateIndexes() []string {
+	sql := make([]string, len(t.indexes))
+	for i, index := range t.indexes {
+		sql[i] = t.sqlForCreateIndex(index)
+	}
+	return sql
 }

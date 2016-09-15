@@ -80,7 +80,7 @@ func (m *DbMap) CreateIndexes() error {
 	var err error
 	for _, table := range m.tables {
 		for _, index := range table.indexes {
-			s := table.SqlForCreateIndexes(index)
+			s := table.sqlForCreateIndex(index)
 			_, err := m.Exec(s)
 			if err != nil {
 				break
@@ -90,7 +90,7 @@ func (m *DbMap) CreateIndexes() error {
 
 	for _, table := range m.dynamicTableMap() {
 		for _, index := range table.indexes {
-			s := table.SqlForCreateIndexes(index)
+			s := table.sqlForCreateIndex(index)
 			_, err := m.Exec(s)
 			if err != nil {
 				break
@@ -353,7 +353,7 @@ func (m *DbMap) createTables(ifNotExists bool) error {
 	var err error
 	for i := range m.tables {
 		table := m.tables[i]
-		sql := table.SqlForCreate(ifNotExists)
+		sql := table.SqlForCreateTable(ifNotExists)
 		_, err = m.Exec(sql)
 		if err != nil {
 			return err
@@ -361,7 +361,7 @@ func (m *DbMap) createTables(ifNotExists bool) error {
 	}
 
 	for _, tbl := range m.dynamicTableMap() {
-		sql := tbl.SqlForCreate(ifNotExists)
+		sql := tbl.SqlForCreateTable(ifNotExists)
 		_, err = m.Exec(sql)
 		if err != nil {
 			return err
