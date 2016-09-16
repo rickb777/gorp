@@ -7,7 +7,7 @@
 // compliant database/sql driver.
 //
 // Source code and project home:
-// https://github.com/go-gorp/gorp
+// https://github.com/rickb777/gorp
 
 package gorp_test
 
@@ -21,7 +21,7 @@ import (
 	. "github.com/onsi/ginkgo/extensions/table"
 	. "github.com/onsi/gomega"
 
-	"github.com/go-gorp/gorp"
+	"github.com/rickb777/gorp"
 )
 
 var _ = Describe("MySQLDialect", func() {

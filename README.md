@@ -1,18 +1,18 @@
 # Go Relational Persistence
 
-[![build status](https://img.shields.io/travis/go-gorp/gorp.svg)](http://travis-ci.org/go-gorp/gorp)
-[![code coverage](https://img.shields.io/coveralls/go-gorp/gorp.svg)](https://coveralls.io/r/go-gorp/gorp)
-[![issues](https://img.shields.io/github/issues/go-gorp/gorp.svg)](https://github.com/go-gorp/gorp/issues)
+[![build status](https://img.shields.io/travis/rickb777/gorp.svg)](http://travis-ci.org/rickb777/gorp)
+[![code coverage](https://img.shields.io/coveralls/rickb777/gorp.svg)](https://coveralls.io/r/rickb777/gorp)
+[![issues](https://img.shields.io/github/issues/rickb777/gorp.svg)](https://github.com/rickb777/gorp/issues)
 [![godoc v1](https://img.shields.io/badge/godoc-v1-375EAB.svg)](https://godoc.org/gopkg.in/gorp.v1)
-[![godoc bleeding edge](https://img.shields.io/badge/godoc-bleeding--edge-375EAB.svg)](https://godoc.org/github.com/go-gorp/gorp)
+[![godoc bleeding edge](https://img.shields.io/badge/godoc-bleeding--edge-375EAB.svg)](https://godoc.org/github.com/rickb777/gorp)
 
-### Update 2015-07-01 Cleanup & feature freeze ([#270](https://github.com/go-gorp/gorp/issues/270))
+### Update 2015-07-01 Cleanup & feature freeze ([#270](https://github.com/rickb777/gorp/issues/270))
 
 We are currently cleaning up the backlog of issues and PR's. When this is done the codebase will be split into separate files and there will be breaking changes to the API's. We're also adding better tests and documentation. As a result of these changes the `master` branch will be unstable. Please use `gopkg.in/gorp.v1`. When the cleanup and changes are done, we will release `v2.0`.
 
 At this time we won't accept new feature-related pull-requests because of changes to the codebase. Please create an issue for your feature and wait until `v2.0` has been released.
 
-For more information, please read [#270](https://github.com/go-gorp/gorp/issues/270).
+For more information, please read [#270](https://github.com/rickb777/gorp/issues/270).
 
 ## Introduction
 
@@ -53,7 +53,7 @@ This project provides a stable release (v1.x tags) and a bleeding edge codebase 
 
 `gopkg.in/gorp.v1` points to the latest v1.x tag. The API's for v1 are stable and shouldn't change. Development takes place at the master branch. Althought the code in master should always compile and test successfully, it might break API's. We aim to maintain backwards compatibility, but API's and behaviour might be changed to fix a bug. Also note that API's that are new in the master branch can change until released as v2.
 
-If you want to use bleeding edge, use `github.com/go-gorp/gorp` as import path.
+If you want to use bleeding edge, use `github.com/rickb777/gorp` as import path.
 
 ## API Documentation
 
@@ -63,7 +63,7 @@ https://godoc.org/gopkg.in/gorp.v1
 
 For the latest code in master:
 
-https://godoc.org/github.com/go-gorp/gorp
+https://godoc.org/github.com/rickb777/gorp
 
 ## Supported Go versions
 
