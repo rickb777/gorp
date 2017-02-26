@@ -360,7 +360,7 @@ func (me testTypeConverter) FromDb(target interface{}) (gorp.CustomScanner, bool
 }
 
 func (p *Person) PreInsert(s gorp.SqlExecutor) error {
-	p.Created = time.Now().UnixNano()
+	p.Created = time.Now().UTC().UnixNano()
 	p.Updated = p.Created
 	if p.FName == "badname" {
 		return fmt.Errorf("Invalid name: %s", p.FName)
@@ -729,7 +729,7 @@ func TestCustomDateType(t *testing.T) {
 	}
 	defer dropAndClose(dbmap)
 
-	test1 := &WithCustomDate{Added: CustomDate{Time: time.Now().Truncate(time.Second)}}
+	test1 := &WithCustomDate{Added: CustomDate{Time: time.Now().UTC().Truncate(time.Second)}}
 	err = dbmap.Insert(test1)
 	if err != nil {
 		t.Errorf("Could not insert struct with custom date field: %s", err)

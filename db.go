@@ -576,7 +576,7 @@ func (m *DbMap) Select(i interface{}, query string, args ...interface{}) ([]inte
 // This is equivalent to running:  Exec() using database/sql
 func (m *DbMap) Exec(query string, args ...interface{}) (sql.Result, error) {
 	if m.logger != nil {
-		now := time.Now()
+		now := time.Now().UTC()
 		defer m.trace(now, query, args...)
 	}
 	return exec(m, query, args...)
@@ -620,7 +620,7 @@ func (m *DbMap) SelectOne(holder interface{}, query string, args ...interface{})
 // Begin starts a gorp Transaction
 func (m *DbMap) Begin() (*Transaction, error) {
 	if m.logger != nil {
-		now := time.Now()
+		now := time.Now().UTC()
 		defer m.trace(now, "begin;")
 	}
 	tx, err := m.Db.Begin()
@@ -672,7 +672,7 @@ func (m *DbMap) DynamicTableFor(tableName string, checkPK bool) (*TableMap, erro
 // This is equivalent to running:  Prepare() using database/sql
 func (m *DbMap) Prepare(query string) (*sql.Stmt, error) {
 	if m.logger != nil {
-		now := time.Now()
+		now := time.Now().UTC()
 		defer m.trace(now, query, nil)
 	}
 	return m.Db.Prepare(query)
@@ -725,7 +725,7 @@ func (m *DbMap) tableForPointer(ptr interface{}, checkPK bool) (*TableMap, refle
 
 func (m *DbMap) QueryRow(query string, args ...interface{}) *sql.Row {
 	if m.logger != nil {
-		now := time.Now()
+		now := time.Now().UTC()
 		defer m.trace(now, query, args...)
 	}
 	return m.Db.QueryRow(query, args...)
@@ -733,7 +733,7 @@ func (m *DbMap) QueryRow(query string, args ...interface{}) *sql.Row {
 
 func (m *DbMap) Query(query string, args ...interface{}) (*sql.Rows, error) {
 	if m.logger != nil {
-		now := time.Now()
+		now := time.Now().UTC()
 		defer m.trace(now, query, args...)
 	}
 	return m.Db.Query(query, args...)
@@ -742,6 +742,6 @@ func (m *DbMap) Query(query string, args ...interface{}) (*sql.Rows, error) {
 func (m *DbMap) trace(started time.Time, query string, args ...interface{}) {
 	if m.logger != nil {
 		var margs = argsString(args...)
-		m.logger.Printf("%s%s [%s] (%v)", m.logPrefix, query, margs, (time.Now().Sub(started)))
+		m.logger.Printf("%s%s [%s] (%v)", m.logPrefix, query, margs, (time.Now().UTC().Sub(started)))
 	}
 }
