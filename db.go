@@ -45,6 +45,7 @@ type DbMap struct {
 	tablesDynamic map[string]*TableMap // tables that use same go-struct and different db table names
 	logger        GorpLogger
 	logPrefix     string
+	logSuffix     string
 }
 
 func (m *DbMap) dynamicTableAdd(tableName string, tbl *TableMap) {
@@ -742,6 +743,6 @@ func (m *DbMap) Query(query string, args ...interface{}) (*sql.Rows, error) {
 func (m *DbMap) trace(started time.Time, query string, args ...interface{}) {
 	if m.logger != nil {
 		var margs = argsString(args...)
-		m.logger.Printf("%s%s [%s] (%v)", m.logPrefix, query, margs, (time.Now().Sub(started)))
+		m.logger.Printf("%s%s%s [%s] (%v)", m.logPrefix, query, m.logSuffix, margs, (time.Now().Sub(started)))
 	}
 }

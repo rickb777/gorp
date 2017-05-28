@@ -11,7 +11,10 @@
 
 package gorp
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 type GorpLogger interface {
 	Printf(format string, v ...interface{})
@@ -28,13 +31,16 @@ type GorpLogger interface {
 // Note that the base log.Logger type satisfies GorpLogger, but adapters can
 // easily be written for other logging packages (e.g., the golang-sanctioned
 // glog framework).
-func (m *DbMap) TraceOn(prefix string, logger GorpLogger) {
+func (m *DbMap) TraceOn(prefix, suffix string, logger GorpLogger) {
 	m.logger = logger
-	if prefix == "" {
+
+	if strings.TrimSpace(prefix) == "" {
 		m.logPrefix = prefix
-	} else {
+	} else if !strings.HasSuffix(prefix, " ") {
 		m.logPrefix = fmt.Sprintf("%s ", prefix)
 	}
+
+	m.logSuffix = suffix
 }
 
 // TraceOff turns off tracing. It is idempotent.

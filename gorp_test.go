@@ -1824,9 +1824,9 @@ func TestVersionMultipleRows(t *testing.T) {
 	defer dropAndClose(dbmap)
 
 	persons := []*Person{
-		&Person{0, 0, 0, "Bob", "Smith", 0},
-		&Person{0, 0, 0, "Jane", "Smith", 0},
-		&Person{0, 0, 0, "Mike", "Smith", 0},
+		{0, 0, 0, "Bob", "Smith", 0},
+		{0, 0, 0, "Jane", "Smith", 0},
+		{0, 0, 0, "Mike", "Smith", 0},
 	}
 
 	_insert(dbmap, persons[0], persons[1], persons[2])
